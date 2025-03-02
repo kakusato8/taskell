@@ -1,28 +1,31 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { registerRootComponent } from 'expo';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { AddTaskForm } from './components/AddTaskForm';
+import { TaskList } from './components/TaskList';
 
-export default function Home() {
+function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to My App</Text>
-      <Text style={styles.text}>This is the home page</Text>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <AddTaskForm />
+        <TaskList />
+        <StatusBar style="auto" />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  text: {
-    fontSize: 16,
-    color: '#666',
+    padding: 16,
   },
 });
+
+registerRootComponent(App); 
